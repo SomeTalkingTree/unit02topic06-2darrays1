@@ -68,9 +68,10 @@ public class Main { /*
 
 
 //nice
-//needs fixing
+//needs fixing, like a lot of fixing
+//need to find a way that the list would print easier
   public static void withWeightedAverage(double[][] str,double[] weight) {
-  double[][] longlist = new double[str.length][weight.length]; 
+  double[][] longlist = new double[str.length-1][weight.length]; 
   double answer = 0;
   double total = 0;
   int num =0;
@@ -86,6 +87,7 @@ public class Main { /*
     double times =0;
     for(double[] row : str){
       side=0;
+
       for (double value : row) {
         times = Math.round(weight[placenum]); 
         for(int loop=0;loop<=times;loop++){
@@ -95,15 +97,16 @@ public class Main { /*
         placenum++;
         side++;
       }
+
       //code for the average
       placenum=0;
       answer = (total/finalnum);
       longlist[num][weight.length]=answer;
       total=0;answer=0;num++;
     //code for the average
-    System.out.println(Arrays.deepToString(longlist));
-    }
     
+    }
+    System.out.println(Arrays.deepToString(longlist));
   }else{
     System.out.println("Cannot print because weight is too big to make equal in grade.");
   }
