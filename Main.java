@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
 import javax.swing.plaf.synth.SynthScrollPaneUI;
  
@@ -69,26 +70,43 @@ public class Main { /*
 //nice
 //needs fixing
   public static void withWeightedAverage(double[][] str,double[] weight) {
-  
+  double[][] longlist = new double[str.length][weight.length]; 
   double answer = 0;
   double total = 0;
   int num =0;
+  int finalnum = 0;
   for(int loop=0;loop<weight.length;loop++){
     answer+=weight[loop];
+    finalnum+=Math.round(weight[loop]);
   }
-  if(answer==1){  
-  for(double[] row : str){
-    for (double value : row) {
-      total +=value;  
+  
+  int side = 0;
+  if(answer==100){
+    int placenum = 0;
+    double times =0;
+    for(double[] row : str){
+      side=0;
+      for (double value : row) {
+        times = Math.round(weight[placenum]); 
+        for(int loop=0;loop<=times;loop++){
+          total = total+value;  
+        }
+        longlist[num][side]=value;
+        placenum++;
+        side++;
+      }
+      //code for the average
+      placenum=0;
+      answer = (total/finalnum);
+      longlist[num][weight.length]=answer;
+      total=0;answer=0;num++;
+    //code for the average
+    System.out.println(Arrays.deepToString(longlist));
     }
-    total+= str[num][str[0].length-1];
-    answer = (total/(str[0].length+1));
-    System.out.println(answer);
-    total=0;answer=0;num++;
     
-    }
-    
-    
+  }else{
+    System.out.println("Cannot print because weight is too big to make equal in grade.");
+  }
   }
 
   public static void main(String[] args) {
@@ -102,7 +120,8 @@ public class Main { /*
       {30,60,76},
       {55,96,85}
     };
-    double[] weight = new double[]{0.25,0.25,0.5};
+    double[] weight = new double[]{25.5,24.5,50};
+
     double[][] doublelist = new double[][] {
     {99, 85, 98},
     {98, 57, 79},
@@ -117,16 +136,17 @@ public class Main { /*
     };
     int num=doublelist.length;
     int num2 = doublelist[0].length;
-    System.out.println(num+" "+num2);
+    //System.out.println(num+" "+num2);
     //printTranspose(doublelist);
+
     withWeightedAverage(doublelist,weight);
+
     //System.out.println(list[1][2]);
     
     //System.out.println(copySquare(list));
     
     //System.out.println(copyRectangle(list));
-
-   
+    
   }
 }
 
