@@ -51,3 +51,7 @@ double[] weights = { 0.25, 0.25, 0.50 };
 Using these weights, the first row average would be 95 instead of 94.
 
 Note that the weights should sum to 1.
+
+//me below
+`Notes:` The last one should be done twice, so all of the weights would be .25
+[][] "lists" for the entire thing.
